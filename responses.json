@@ -1,0 +1,88 @@
+{
+    "start" : [
+        "We got",
+        "You got",
+        "Looks like",
+        "That's",
+        "I got",
+        "Got",
+        "How about",
+        "Someone got",
+        "Hey look,",
+        "Have you seen",
+        "Sending good vibes and",
+        "Whoa,",
+        "It's",
+        "I hope you like",
+        "Phone, keys, wallet, and",
+        "Check it out. It's",
+        "Here's",
+        "Rolled",
+        "Found",
+        "Brought you",
+        "Ever try",
+        "Russeled up",
+        "Totally didn't fabricate",
+        "Could it be",
+        "Fresh out the oven, it's"
+    ],
+
+    "secret" : [
+        "Secret message sent.",
+        "Check your DMs.",
+        "This is our little secret. 😉",
+        "Shhhhhhhhhhhh"
+    ],
+
+    "nat20" : [
+        "\nNat 20!",
+        "\nThat's a crit!",
+        "\nWay to go!",
+        "\n🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥",
+        "\n👍"
+    ],
+
+    "nat1" : [
+        "\nBetter luck next time.",
+        "\nThat's a crit fail!",
+        "\nSorry about that.",
+        "\nThat's a bummer",
+        "\n😢"
+    ],
+
+    "end" : [
+        "\nThat's {}",
+        "\nTotal is {}",
+        "\nAll together we have {}"
+    ],
+
+    "nice" : {
+        "69" : "\nNice! 😊",
+        "404" : "\nRoll not found! 😵",
+        "420" : "\nBlaze it! 🌿",
+        "666" : "\nHail Satan! 🤘",
+        "877" : "\n877 CASH NOW! 💸",
+        "911" : "\nIt's an emergency! ☎️",
+        "24601" : "\nJean Valjean!"
+    },
+
+    "stats" : [
+        "Here's what I came up with\n",
+        "Excited for the new character\n",
+        "Hope you like your stats\n",
+        "Stupendous stats staggering ... stover\n",
+        "Good stats, coming to a channel near you\n"
+    ],
+
+    "mulligans" : [
+        "\nAnd {} for good luck",
+        "\nHere's a {} just in case you need it",
+        "\nI found an extra {} lying around if you're interested",
+        "\nNeed a Mulligan? How about {}"
+    ],
+
+    "health" : [
+        "You get {} HP back",
+        "Here's {} HP for you"
+    ]
+}
