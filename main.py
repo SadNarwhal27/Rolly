@@ -1,18 +1,12 @@
 import os
-from typing import Optional
 import discord
 from dotenv import load_dotenv
 from enum import Enum
-
-import dice
-
-load_dotenv()
-
-intents = discord.Intents.default()
-intents.message_content = True
+from rolling_dice import embed_maker
 
 class bot_client(discord.Client):
-    
+    """Creates the Discord client with intents"""
+
     def __init__(self):
         """Initiliazes intents and synced settings across bot instances"""
 
@@ -26,41 +20,40 @@ class bot_client(discord.Client):
         await self.wait_until_ready()
 
         if not self.added:
-            self.add_view(TestView())
+            self.add_view(StandardView())
             self.addded = True
 
-        # Checks if tree commands have been synced
+        # Syncs tree commands
         if not self.synced:
             await tree.sync()
             self.synced = True
 
         print(f"Say hi to {self.user}")
 
-client = bot_client()
-tree = discord.app_commands.CommandTree(client)
-
-class TestView(discord.ui.View):
+class StandardView(discord.ui.View):
+    """"""
 
     def __init__(self) -> None:
-        super().__init__(timeout=30)
+        """Sets the timeout for the View to never time out"""
+        super().__init__(timeout=None)
 
     @discord.ui.button(custom_id='roll_button', label='Roll Again', style=discord.ButtonStyle.blurple)
     async def roll_again(self, interaction: discord.Interaction, button: discord.ui.Button):
-        embed = discord.Embed(
-        title=f'Looks like you got a {dice.roll_dice(1, 20)[0]}', 
-        color=0xff0000,)
-        embed.set_author(name=interaction.user.global_name, icon_url=interaction.user.display_avatar)
-        await interaction.response.send_message(embed=embed, view=TestView())
+        """Let's users start another roll"""
+        await interaction.response.send_message(embed=embed_maker(interaction), view=StandardView())
 
+load_dotenv()
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+client = bot_client()
+tree = discord.app_commands.CommandTree(client)
 
 # Simgle command that can be called with /roll
 @tree.command(name='roll', description='Roll a die.', guild=discord.Object(os.getenv("DISCORD_GUILD")))
 async def roll(interaction: discord.Interaction):
-    embed = discord.Embed(
-        title=f'Looks like you got a {dice.roll_dice(1, 20)[0]}', 
-        color=0xff0000,)
-    embed.set_author(name=interaction.user.global_name, icon_url=interaction.user.display_avatar)
-    await interaction.response.send_message(embed=embed, view=TestView())
+    await interaction.response.send_message(embed=embed_maker(interaction), view=StandardView())
 
 # # Command with options at the end
 # GreetingTime = Enum(value='GreetingTime', names=['MORNING', 'AFTERNOON', 'EVENING', 'NIGHT'])
@@ -83,10 +76,6 @@ async def on_message(message):
         await message.channel.send("Hello there!")
 
     if message.content == '$roll':
-        embed = discord.Embed(
-        title=f'Looks like you got a {dice.roll_dice(1, 20)[0]}', 
-        color=0xff0000,)
-        embed.set_author(name=client.user.global_name, icon_url=client.user.display_avatar)
-        await message.channel.send(embed=embed, view=TestView())
+        await message.channel.send(embed=embed_maker(client), view=StandardView())
 
 client.run(os.environ.get('DISCORD_TOKEN'))

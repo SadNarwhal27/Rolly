@@ -36,12 +36,12 @@
 
     "nat20" : [
         "\nNat 20!",
-        "\nThat's a crit!",
+        "\nThat''s a crit!",
         "\nWay to go!",
         "\n🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥",
         "\n👍"
     ],
-
+    
     "nat1" : [
         "\nBetter luck next time.",
         "\nThat's a crit fail!",
