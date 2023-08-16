@@ -37,3 +37,18 @@ def embed_maker(interaction: discord.Interaction) -> discord.Embed:
     embed.set_author(name=interaction.user.global_name, icon_url=interaction.user.display_avatar)
 
     return embed
+
+def roll_character():
+    rolls = []
+    for _ in range(7):
+        temp_rolls = _roll_dice(4, 6)
+        temp_rolls.remove(min(temp_rolls))
+        rolls.append(str(sum(temp_rolls)))
+    message = f"{_get_response('stats')}{', '.join(rolls[0:6])}"
+    
+    embed = discord.Embed(\
+        title=message,
+        description= _get_response('mulligans').format(rolls[6]),
+        color=0xff0000)
+    return embed
+        

@@ -2,7 +2,7 @@ import os
 import discord
 from dotenv import load_dotenv
 from enum import Enum
-from rolling_dice import embed_maker
+from rolling_dice import embed_maker, roll_character
 
 class bot_client(discord.Client):
     """Creates the Discord client with intents"""
@@ -77,5 +77,8 @@ async def on_message(message):
 
     if message.content == '$roll':
         await message.channel.send(embed=embed_maker(client), view=StandardView())
+    
+    if message.content == '$character':
+        await message.channel.send(embed=roll_character())
 
 client.run(os.environ.get('DISCORD_TOKEN'))
